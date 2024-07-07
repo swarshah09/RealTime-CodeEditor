@@ -1,38 +1,431 @@
-.App {
-  text-align: center;
+.homePageWrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
+.formWrapper {
+  background: #282a36;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.formWrapper img {
+  height: 70px;
+  width: 380px;
+}
+
+.mainLable {
+  margin-left: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textInputWrapper {
+  position: relative;
+  width: 90%;
+  margin-bottom: 20px;
+  --accent-color: #a3e583;
+  margin-right: 25px;
+}
+
+.textInputWrapper:before {
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.textInputWrapper:before,
+.textInputWrapper:after {
+  content: "";
+  left: 0;
+  right: 0;
+  position: absolute;
   pointer-events: none;
+  bottom: -1px;
+  z-index: 4;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.textInputWrapper:focus-within:before {
+  border-bottom: 1px solid var(--accent-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.textInputWrapper:before {
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.textInputWrapper:focus-within:before {
+  border-bottom: 1px solid var(--accent-color);
+  transform: scaleX(1);
+}
+
+.textInputWrapper:focus-within:after {
+  border-bottom: 2px solid var(--accent-color);
+  transform: scaleX(1);
+}
+
+.textInputWrapper:after {
+  content: "";
+  transform: scaleX(0);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  will-change: transform;
+  border-bottom: 2px solid var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.textInput::placeholder {
+  transition: opacity 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.582);
+}
+
+.textInputWrapper .textInput {
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 2px 5px rgb(35 35 35 / 30%);
+  max-height: 36px;
+  background-color: #252525;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 200ms;
+  transition-property: background-color;
+  color: #e8e8e8;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px;
+  width: 100%;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+}
+
+.textInputWrapper .textInput:focus,
+.textInputWrapper .textInput:active {
+  outline: none;
+}
+
+.textInputWrapper:focus-within .textInput,
+.textInputWrapper .textInput:focus,
+.textInputWrapper .textInput:active {
+  background-color: #353535;
+}
+
+.textInputWrapper:focus-within .textInput::placeholder {
+  opacity: 0;
+}
+
+.mainLabel {
+  margin-top: 0;
+}
+
+.joinBtn {
+  border: none;
+  outline: none;
+  background-color: #2ecc40;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #7eea8b;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.joinBtn:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #7eea8b;
+}
+
+.createInfo {
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.createNewBtn {
+  color: #2ecc40;
+  text-decoration: none;
+
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.createNewBtn:hover {
+  color: #7eea8b;
+  border-bottom: 1px solid #7eea8b;
+}
+
+.iconlink {
+  color: #2ecc40;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.iconlink:hover {
+  color: #7eea8b;
+  border-bottom: 1px solid #7eea8b;
+}
+
+/* -------------------------------------------------Editor Page-------------------------------------------------------------------------------- */
+.mainWrap {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  /* height: 100vh; */
+}
+
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.asideInner {
+  flex: 1;
+}
+
+.logo {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
+}
+
+.logoImage {
+  height: 53px;
+  width: 280px;
+}
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userName {
+  margin-top: 7px;
+}
+
+.buttonboth {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.leaveBtn {
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  background-color: #2ecc40;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #7eea8b;
+  width: 80%;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.leaveBtn:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #7eea8b;
+}
+
+
+/* tooltip settings 👇 */
+
+.copy {
+  /* button */
+  --button-bg: #ffffff;
+  --button-hover-bg: #464646;
+  --button-text-color: #474747;
+  --button-hover-text-color: #8bb9fe;
+  --button-border-radius: 5px;
+  --button-diameter: 36px;
+  --button-outline-width: 1px;
+  --button-outline-color: rgb(141, 141, 141);
+  /* tooltip */
+  --tooltip-bg: #f4f3f3;
+  --toolptip-border-radius: 5px;
+  --tooltip-font-family: Menlo, Roboto Mono, monospace;
+  /* 👆 this field should not be empty */
+  --tooltip-font-size: 12px;
+  /* 👆 this field should not be empty */
+  --tootip-text-color: rgb(50, 50, 50);
+  --tooltip-padding-x: 7px;
+  --tooltip-padding-y: 7px;
+  --tooltip-offset: 8px;
+  /* --tooltip-transition-duration: 0.3s; */
+  /* 👆 if you need a transition, 
+  just remove the comment,
+  but I didn't like the transition :| */
+}
+
+.copy {
+  box-sizing: border-box;
+  width: 80%;
+  height: var(--button-diameter);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  box-shadow: 0px 5px 0px 0px #eaeaea;
+  font-weight: bold;
+}
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: var(--tooltip-font-size) var(--tooltip-font-family);
+  color: var(--tootip-text-color);
+  background: var(--tooltip-bg);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--toolptip-border-radius);
+  pointer-events: none;
+  transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip::before {
+  content: attr(data-text-initial);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--tooltip-padding-y) / 2 * -1);
+  width: var(--tooltip-padding-y);
+  height: var(--tooltip-padding-y);
+  background: inherit;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -999;
+  pointer-events: none;
+}
+
+.copy svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark {
+  display: none;
+}
+
+/* actions */
+
+.copy:hover .tooltip,
+.copy:focus:not(:focus-visible) .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: calc((100% + var(--tooltip-offset)) * -1);
+}
+
+.copy:focus:not(:focus-visible) .tooltip::before {
+  content: attr(data-text-end);
+}
+
+.copy:focus:not(:focus-visible) .clipboard {
+  display: none;
+}
+
+.copy:focus:not(:focus-visible) .checkmark {
+  display: block;
+}
+
+.copy:hover,
+.copy:focus {
+  background-color: var(--button-hover-bg);
+}
+
+.copy:active {
+  outline: var(--button-outline-width) solid var(--button-outline-color);
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #eaeaea;
+}
+
+.copy:hover svg {
+  color: var(--button-hover-text-color);
+}
+
+.CodeMirror {
+  min-height: calc(100vh - 20px);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-top: 20px;
+}
+
+.typingIndicator {
+  margin-top: 10px;
+  font-style: italic;
+  color: gray;
+}
+
+.downloadBtn {
+  margin-top: 20px;
+  border: none;
+  outline: none;
+  background-color: #2ecc40;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #7eea8b;
+  width: 80%;
+
+}
+
+.downloadBtn:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #7eea8b;
+}
+
+.elapsedTime {
+  margin-top: 20px;
+  font-size: 16px;
+  color: rgb(169, 169, 169);
+}
+
+.issue{
+  font-size: 11px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
