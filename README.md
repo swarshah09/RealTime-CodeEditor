@@ -42,7 +42,8 @@ A real-time collaborative code editor built with React, Express, Socket.io, and 
 
 - Real-time collaborative editing
 - Typing indicators for multiple users
-- Code compilation and execution
+- Time spent in a room
+- Download the text file
 - User authentication and session management
 
 ## Technologies Used
@@ -65,7 +66,6 @@ A real-time collaborative code editor built with React, Express, Socket.io, and 
 
 ### Demo Video
 https://github.com/swarshah09/da/assets/90791181/6e49ca30-af2d-434c-86ac-09d7ce6d3279
-
 
 ### Testing
 - **@testing-library/jest-dom**: Custom jest matchers to test the state of the DOM.
