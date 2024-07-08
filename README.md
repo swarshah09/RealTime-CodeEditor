@@ -1,4 +1,3 @@
-```markdown
 # RealTime-CodeEditor
 
 A real-time collaborative code editor built with React, Express, Socket.io, and various other technologies. This project allows multiple users to edit code simultaneously with live updates, compile code, and see who is typing in real-time.
