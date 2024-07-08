@@ -1,4 +1,4 @@
-# RealTime-CodeEditor
+![codeconnection-high-resolution-logo-transparent](https://github.com/swarshah09/da/assets/90791181/8a2a9cb9-f21c-40ef-a595-6b2d7689eaaa)
 
 A real-time collaborative code editor built with React, Express, Socket.io, and various other technologies. This project allows multiple users to edit code simultaneously with live updates, compile code, and see who is typing in real-time.
 
