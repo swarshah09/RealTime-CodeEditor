@@ -63,6 +63,10 @@ A real-time collaborative code editor built with React, Express, Socket.io, and 
 - **axios**: Promise based HTTP client for the browser and node.js.
 - **uuid**: For generating unique identifiers.
 
+### Demo Video
+https://github.com/swarshah09/da/assets/90791181/6e49ca30-af2d-434c-86ac-09d7ce6d3279
+
+
 ### Testing
 - **@testing-library/jest-dom**: Custom jest matchers to test the state of the DOM.
 - **@testing-library/react**: Simple and complete React DOM testing utilities that encourage good testing practices.
