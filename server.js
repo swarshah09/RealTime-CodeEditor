@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const http = require('http');
 const { Server } = require('socket.io');
@@ -6,13 +7,22 @@ const ACTIONS = require('./src/Actions');
 const path = require('path');
 
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "*", // Adjust if you have a specific domain for the frontend
+        methods: ["GET", "POST"]
+    }
+});
 
-app.use(express.static('build'));
-app.use((req, res, next) => {
+// Middleware
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'build'))); // Serve static files
+
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// WebSocket and other configurations
 const userSocketMap = {};
 const roomCreationTimes = {};  // Store the creation time of each room
 
@@ -26,26 +36,24 @@ function getAllConnectedClients(roomId) {
 }
 
 io.on('connection', (socket) => {
-    console.log('socket connected', socket.id);
+    console.log('Socket connected:', socket.id);
 
     socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
         console.log(`User ${username} joined room ${roomId} with socket ID ${socket.id}`);
         userSocketMap[socket.id] = username;
         socket.join(roomId);
 
-        // Set room creation time if it doesn't exist
         if (!roomCreationTimes[roomId]) {
             roomCreationTimes[roomId] = new Date().toISOString();
         }
 
         const clients = getAllConnectedClients(roomId);
-
         clients.forEach(({ socketId }) => {
             io.to(socketId).emit(ACTIONS.JOINED, {
                 clients,
                 username,
                 socketId: socket.id,
-                roomCreationTime: roomCreationTimes[roomId],  // Send room creation time to clients
+                roomCreationTime: roomCreationTimes[roomId],
             });
         });
 
@@ -53,7 +61,7 @@ io.on('connection', (socket) => {
             clients,
             username,
             socketId: socket.id,
-            roomCreationTime: roomCreationTimes[roomId],  // Send room creation time to clients
+            roomCreationTime: roomCreationTimes[roomId],
         });
     });
 
@@ -80,7 +88,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('socket disconnected', socket.id);
+        console.log('Socket disconnected:', socket.id);
         delete userSocketMap[socket.id];
     });
 });

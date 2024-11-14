@@ -39,7 +39,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
                     setIsTyping(true);
                     socketRef.current.emit(ACTIONS.TYPING, {
                         roomId,
-                        username: socketRef.current.username, // Ensure username is passed
+                        username: socketRef.current.username, // Make sure to pass the username
                     });
                 }
 
@@ -49,7 +49,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
                 }, 3000);
             });
         }
-    }, [isTyping, roomId, socketRef, onCodeChange]);
+    }, []);
 
     useEffect(() => {
         const handleCodeChange = ({ code }) => {
@@ -67,7 +67,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
                 socketRef.current.off(ACTIONS.CODE_CHANGE, handleCodeChange);
             }
         };
-    }, [socketRef]);
+    }, [socketRef.current]);
 
     return <textarea ref={textareaRef} id="realtimeEditor"></textarea>;
 };
